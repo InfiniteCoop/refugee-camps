@@ -59,7 +59,7 @@ define([
 
 		// Set map marker colors
 		var defaultMarkerColor = new Color([100,100,100, 1]);
-		var activeMarkerColor = new Color([0,114,188, 1]);
+		var activeMarkerColor = new Color([0,94,184, 1]);
 
 		// Path to CSV file
 		var csvPath = 'resources/index-map/index-map-layer.csv';
@@ -217,21 +217,8 @@ define([
 		}
 	});
 
-	 /*
-	     * Set up a click handler on the feature of the map to navigate the story
-	     */
+		/* Click handler for map symbols */
 
-	    //
-	    // *************************************
-	    // Configure the webmap id and layer id
-	    // *************************************
-	    //
-	    // First find the webmap id through the URL when you open the map in Map Viewer
-	    // To get the layer id, paste the webmap id below and open the application, 
-	    //   then open the developer console, all the layers ids will be listed,
-	    //   find the correct one and paste it below
-	    // After this setup, clicking the 3rd feature of your layer, will navigate to the third entry
-	    //
 	    var WEBMAP_ID = "0df1997ac587470f9e3713a15c532cb9",
 	        LAYER_ID = "UNHCR_PoC_2016_8102";
 
