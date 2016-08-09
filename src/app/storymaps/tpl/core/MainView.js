@@ -30,7 +30,7 @@ define(["lib-build/css!./MainView",
 		"lib-build/css!../ui/mobile/Common",
 		"lib-build/css!../ui/Responsive",
 		// Mongol Custom Code
-		"../mongolCustom/main"
+		"../custom/main"
 	], 
 	function (
 		viewCss,

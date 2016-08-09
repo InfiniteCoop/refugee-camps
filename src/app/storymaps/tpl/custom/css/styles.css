@@ -1,13 +1,20 @@
 h1, h2, h3 {
 	color: #fff !important;
 	font-style: bold !important
-}		
+}	
+
+p {
+	font-size: 1.1em !important;
+	color: #fff !important;
+}
+
 
 .sectionPanel .title, .sectionPanel .appTitle, #mobileView .title{
 	font-family: 'Muli', sans-serif !important
 }
 
 .sectionPanel .title strong {
+	color: #fff;
 	line-height: 1.2em !important;
 	font-size: 1.2em !important;
 }
@@ -20,23 +27,22 @@ h1, h2, h3 {
 	font-family: 'Muli', sans-serif !important;
 }
 
-p {
-	font-size: 1.1em !important;
-	color: #000 !important;
+.section {
+	background-color: rgba(255,255,255,0.8) !important;
 }
 
 .section .content strong {
 	font-size: 1.1em !important;
-	color: #000 !important;
+	color: #fff !important;
+	font-style: bold;
 }
 
 .section a {
 	color: #000080 !important;
 }
 
-
 .sidePanel .section.active {
-	background-color: rgba(255,255,255,0.7) !important;
+	background-color: rgba(0,114,188,0.9) !important;
 }
 
 #mainStagePanel {
@@ -52,16 +58,25 @@ p {
 	height: 110% !important;
 }
 
+.header .linkContainer a, .shareIcon, .shareIcon:disabled {
+	color: #646464 !important;
+	opacity: 1 !important;
+}
+
+ .header .linkContainer a:hover, .shareIcon:hover {
+	color: #0072BC !important;
+}
+
 #sidePanel {
 	display: table-cell !important;
 	position: fixed !important;
 	width: 45% !important;
+	max-width: 800px !important;
 	left: 2%;
 	background-color: transparent !important;
 	z-index: 2 !important;
 	border-right: 0px solid !important;
-/*	overflow-y:hidden !important;
-*/}
+}
 
 .sidePanel .sections {
 	padding: 0px !important;
@@ -94,7 +109,7 @@ p {
 }
 
 .navDots .navGroup:hover, .navGroup.active {
-	color: rgba(255,255,255,1) !important;
+	color: rgb(0,114,188)!important;
 }
 
 .navDots .dot {
@@ -106,16 +121,16 @@ p {
 
 .navDots .dot:hover, .dot.active {
 	font-size: 26px !important;
-	color: rgba(255,255,255,1) !important;
+	color: rgb(0,114,188)!important;
 }
 
 .pullquote {
 	font-size: 1.8em !important;
-	color: #00080 !important;
+	color: #fff !important;
 	font-family: 'Lora', serif !important;
 	font-style: italic !important;
 	padding: 20px 0px !important;
-	margin: 0px 40px 0px 40px!important;
+	margin: 0px 40px 0px 40px !important;
 	height: auto !important;
 }
 
@@ -217,7 +232,7 @@ p {
 	text-transform: uppercase;
 	text-decoration: underline;
 	cursor: pointer;
-	color: rgba(0,151,251,1) !important;
+	color: rgba(0,114,188,1) !important;
 	-webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
 	-o-transition: all .5s ease;
@@ -225,7 +240,7 @@ p {
 }
 
 .panel-button:hover {
-	background-color: rgba(0,151,251,0.9) !important;
+	background-color: rgba(0,114,188,0.9) !important;
 	color: rgba(255,255,255,1) !important;
 }
 
@@ -234,7 +249,7 @@ p {
 #index-map-container {
 	position: relative;
 	width: 100%;
-	height: 20%;
+	height: 15%;
 }
 
 #index-map {

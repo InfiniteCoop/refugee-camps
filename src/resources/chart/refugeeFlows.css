@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+
+body {
+  font-family: "Questrial", Arial;
+  background-color: #fff;
+}
+
+p {
+  margin-top: 2rem;
+  font-size: 13px;
+}
+
+#chart {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  left: 5%;
+}
+
+/*#source {
+	width: 86%;
+	position: relative;
+	text-align: right;
+}
+
+#source a {
+	font-size: 11px;
+	color: #c8c8c8 !important;
+	}
+
+#source a:hover {
+	color: #969696 !important;
+}*/

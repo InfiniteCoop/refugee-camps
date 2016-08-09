@@ -31,33 +31,6 @@ define([
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
 		
-		//Update text in 2D/3D toggle button
-		var setSwitcherText = function() {
-			if (window.appID == 'f9bfd5bb5f3244ce9e655de57b2e694d') {
-				$("#switcher-button").text("switch to 2d version");
-			}
-			else {
-				$("#switcher-button").text("swich to 3d version");
-			}
-		};			
-
-
-		var baseURL = window.location.href.split("?")[0];
-
-		//Switch between 2D and 3D versions of the map when the button is clicked. The two versions have 
-		// separate app IDs, which are set in index.html when the page loads. Due to a known bug, it's currently
-		// impossible to automatically scroll to the same section when the page refreshes. 
-		$("#map-switcher-container").click(function() {
-			if (window.appID == 'f9bfd5bb5f3244ce9e655de57b2e694d') {
-				window.location.replace(baseURL + "?map=2d");
-			}
-			else {
-				window.location.replace(baseURL);
-			}
-		});
-
-		//Trigger text update
-		setSwitcherText();
 
 		//Hide splash page on scroll/button click
 		var showApp = function () {
@@ -86,7 +59,7 @@ define([
 
 		// Set map marker colors
 		var defaultMarkerColor = new Color([100,100,100, 1]);
-		var activeMarkerColor = new Color([0,151,251, 1]);
+		var activeMarkerColor = new Color([0,114,188, 1]);
 
 		// Path to CSV file
 		var csvPath = 'resources/index-map/index-map-layer.csv';
@@ -100,8 +73,8 @@ define([
 		});
 
 		// Create default map extent and spatial reference
-		var startExtent = new esri.geometry.Extent(-420000, 4200000, 12200000, 7200000,
-			new esri.SpatialReference({wkid:102100}) );
+		var startExtent = new esri.geometry.Extent(400000, -2000000, 8000000, 6000000,
+			new esri.SpatialReference(102100) );
 
 		// Create the index map with minimal UI;
 		var indexMap = new Map('index-map',{
@@ -144,11 +117,8 @@ define([
 			});
 		});
 
-		//Create line layer from Feature Service
-		var lineLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Mongol_Rally_Route/FeatureServer/0");
-
 		//Create country layer from Feature Service
-		var countriesLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/VisitedCountriesGeneralized/FeatureServer/0");
+		var countriesLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/CountriesGeneralized/FeatureServer/0");
 
 		// Load CSV File as point later
 		var indexMapLayer = new CSVLayer(csvPath);
@@ -165,11 +135,8 @@ define([
 		// Add countries layer to map
 		indexMap.addLayer(countriesLayer,0);
 
-		//Add path layer to map
-		indexMap.addLayer(lineLayer,1);
-
 		// Add CSV layer to map
-		indexMap.addLayer(indexMapLayer,2);
+		indexMap.addLayer(indexMapLayer,1);
 
 		// Select current section in index map on Loading
 		setIconDisplay(app.data.getCurrentSectionIndex());
@@ -249,4 +216,54 @@ define([
 			}).show();
 		}
 	});
+
+	 /*
+	     * Set up a click handler on the feature of the map to navigate the story
+	     */
+
+	    //
+	    // *************************************
+	    // Configure the webmap id and layer id
+	    // *************************************
+	    //
+	    // First find the webmap id through the URL when you open the map in Map Viewer
+	    // To get the layer id, paste the webmap id below and open the application, 
+	    //   then open the developer console, all the layers ids will be listed,
+	    //   find the correct one and paste it below
+	    // After this setup, clicking the 3rd feature of your layer, will navigate to the third entry
+	    //
+	    var WEBMAP_ID = "0df1997ac587470f9e3713a15c532cb9",
+	        LAYER_ID = "UNHCR_PoC_2016_8102";
+
+	    var clickHandlerIsSetup = false;
+
+	    topic.subscribe("story-loaded-map", function(result){
+	        if ( result.id == WEBMAP_ID && ! clickHandlerIsSetup ) {
+	            var map = app.maps[result.id].response.map,
+	                layer = map.getLayer(LAYER_ID);
+
+	            console.log(map.graphicsLayerIds);
+
+	            if ( layer ) {
+	                layer.on("mouse-over", function(e){
+	                    map.setMapCursor("pointer");
+	                    map.infoWindow.setContent("<b>"+e.graphic.attributes.name.split(",")[0]+"</b><br/><i>Click to zoom</i>");
+	                    map.infoWindow.show(e.graphic.geometry);
+	                });
+
+	                layer.on("mouse-out", function(e){
+	                    map.setMapCursor("default");
+	                    map.infoWindow.hide();
+	                });
+
+	                layer.on("click", function(e){
+	                    var index = e.graphic.attributes["story_index_10"];
+	                    topic.publish("story-navigate-section", index);
+	                });
+	            }
+
+	            clickHandlerIsSetup = true;
+	        }
+	    });
 });
+
