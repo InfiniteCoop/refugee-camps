@@ -14,7 +14,6 @@ p {
 }
 
 .sectionPanel .title strong {
-	color: #fff;
 	line-height: 1.2em !important;
 	font-size: 1.2em !important;
 }
@@ -33,9 +32,19 @@ p {
 	margin-top: 8px;
 }
 
+.section p, .section strong {
+	color: rgba(0,94,184,0.0) !important;
+	text-shadow: 0px 0px 8px rgba(0,94,184,0.4) !important;
+;
+}
+
+.section.active p, .section.active strong {
+	color: #fff !important;
+	text-shadow: none !important;
+}
+
 .section .content strong {
 	font-size: 1.1em !important;
-	color: #fff !important;
 	font-style: bold;
 }
 
@@ -100,7 +109,8 @@ p {
 }
 
 .esriSimpleSliderTL {
-    left: calc(100% - 50px) !important;
+    left: auto !important;
+    right: 20px !important;
 }
 
 .esriSimpleSlider {
@@ -234,7 +244,7 @@ p {
 
 .panel-button {
 	position: relative;
-	margin: 1px 0px 6px 0px;
+	margin: 1px 0px 8px 0px;
 	background-color: rgba(255,255,255,0.8) !important;
 	width: 100%;
 	left: 0%;
