@@ -7,6 +7,7 @@ define([
 	'esri/map',
 	'esri/layers/CSVLayer',
 	'esri/layers/FeatureLayer',
+	'esri/layers/ArcGISTiledMapServiceLayer',
 	'esri/Color',
 	'esri/symbols/SimpleMarkerSymbol',
 	'esri/renderers/UniqueValueRenderer',
@@ -23,6 +24,7 @@ define([
 		Map,
 		CSVLayer,
 		FeatureLayer,
+		ArcGISTiledMapServiceLayer,
 		Color,
 		SimpleMarkerSymbol,
 		UniqueValueRenderer
@@ -43,12 +45,14 @@ define([
 		$(".splash-arrow").on('click',showApp);
 		$('.splash').on('mousewheel',showApp);
 
-
 		//Toggle index map when overview button is clicked
 		$("#bt").click(function() {
 			$(".sliding-panel").toggleClass("panel-active");
 			console.log("Sliding panel clicked");
 		});
+
+		/* BASEMAP TOGGLE */
+		basemapSwitcher();
 
 		/*  OVERVIEW MAP IN SIDEBAR  */
 
@@ -190,6 +194,7 @@ define([
 		function moveSelectedToFront(){
 			if (selectedGraphic && selectedGraphic.getDojoShape()) {
 				selectedGraphic.getDojoShape().moveToFront();
+				console.log("Moved item to front,")
 			}
 		}
 
@@ -217,40 +222,68 @@ define([
 		}
 	});
 
-		/* Click handler for map symbols */
+	/* Click handler for map symbols */
 
-	    var WEBMAP_ID = "0df1997ac587470f9e3713a15c532cb9",
-	        LAYER_ID = "UNHCR_PoC_2016_8102";
+    var WEBMAP_ID = "0df1997ac587470f9e3713a15c532cb9",
+        LAYER_ID = "UNHCR_PoC_2016_8102";
 
-	    var clickHandlerIsSetup = false;
+    var clickHandlerIsSetup = false;
 
-	    topic.subscribe("story-loaded-map", function(result){
-	        if ( result.id == WEBMAP_ID && ! clickHandlerIsSetup ) {
-	            var map = app.maps[result.id].response.map,
-	                layer = map.getLayer(LAYER_ID);
+    topic.subscribe("story-loaded-map", function(result){
+        if ( result.id == WEBMAP_ID && ! clickHandlerIsSetup ) {
+            var map = app.maps[result.id].response.map,
+                layer = map.getLayer(LAYER_ID);
 
-	            console.log(map.graphicsLayerIds);
+            console.log(map.graphicsLayerIds);
 
-	            if ( layer ) {
-	                layer.on("mouse-over", function(e){
-	                    map.setMapCursor("pointer");
-	                    map.infoWindow.setContent("<b>"+e.graphic.attributes.name.split(",")[0]+"</b><br/><i>Click to zoom</i>");
-	                    map.infoWindow.show(e.graphic.geometry);
-	                });
+            if ( layer ) {
+                layer.on("mouse-over", function(e){
+                    map.setMapCursor("pointer");
+                    map.infoWindow.setContent("<b>"+e.graphic.attributes.name.split(",")[0]+"</b><br/><i>Click to zoom</i>");
+                    map.infoWindow.show(e.graphic.geometry);
+                });
 
-	                layer.on("mouse-out", function(e){
-	                    map.setMapCursor("default");
-	                    map.infoWindow.hide();
-	                });
+                layer.on("mouse-out", function(e){
+                    map.setMapCursor("default");
+                    map.infoWindow.hide();
+                });
 
-	                layer.on("click", function(e){
-	                    var index = e.graphic.attributes["story_index_10"];
-	                    topic.publish("story-navigate-section", index);
-	                });
-	            }
+                layer.on("click", function(e){
+                    var index = e.graphic.attributes["story_index_10"];
+                    topic.publish("story-navigate-section", index);
+                });
+            }
 
-	            clickHandlerIsSetup = true;
-	        }
-	    });
+            clickHandlerIsSetup = true;
+        }
+    });
+
+	function basemapSwitcher(){
+
+				/* BASEMAP TOGGLE */
+		var activeBasemap = 'streets';
+		$("#switcher-button").text("view satellite basemap");
+
+		$("#switcher-button").click(function () {
+			var satelliteBasemap = app.map.getLayer(app.map.layerIds[3]);
+			var satelliteReference = app.map.getLayer(app.map.layerIds[4]);
+			if (activeBasemap == 'streets'){
+				satelliteBasemap.setVisibility(true);
+				satelliteReference.setVisibility(true);
+				activeBasemap = 'satellite';
+				$("#switcher-button").text('view streets basemap');
+			} else {
+				//// Your aerial Layer
+				/*var newbase = new VETiledLayer({
+					bingMapsKey: "-Your Bing Key-",
+					mapStyle: VETiledLayer.MAP_STYLE_AERIAL_WITH_LABELS
+				}); //BING AERIAL */
+				activeBasemap = 'streets';
+				$("#switcher-button").text('view satellite basemap');
+				satelliteBasemap.setVisibility(false);
+				satelliteReference.setVisibility(false);			
+			}
+		});
+	};
 });
 
