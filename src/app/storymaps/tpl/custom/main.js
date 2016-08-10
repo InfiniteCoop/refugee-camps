@@ -230,16 +230,24 @@ define([
     var clickHandlerIsSetup = false;
 
     topic.subscribe("story-loaded-map", function(result){
+
+    	/* Add thousands separator to attributes */
+    	function numberWithCommas(x) {
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
         if ( result.id == WEBMAP_ID && ! clickHandlerIsSetup ) {
             var map = app.maps[result.id].response.map,
                 layer = map.getLayer(LAYER_ID);
 
-            console.log(map.graphicsLayerIds);
-
             if ( layer ) {
                 layer.on("mouse-over", function(e){
                     map.setMapCursor("pointer");
-                    map.infoWindow.setContent("<b>"+e.graphic.attributes.name.split(",")[0]+"</b><br/><i>Click to zoom</i>");
+                    map.infoWindow.setContent(
+                    	"<div style='font-weight:bold;font-size:14px'>"+e.graphic.attributes["Rank"]+". "+e.graphic.attributes["name"]+" ("+e.graphic.attributes["Country"]+")"+"</div><hr/>"+
+						"<div><span style='font-weight:bold;font-size:12px'>People of concern | </span>"+numberWithCommas(e.graphic.attributes["PoCTotal"])+"</div>"+
+						"<div><span style='font-weight:bold;font-size:12px'>Year of establishment | </span>"+e.graphic.attributes["EstabDate"]+"</div>"                   							 
+                    	);
                     map.infoWindow.show(e.graphic.geometry);
                 });
 
@@ -260,7 +268,7 @@ define([
 
 	function basemapSwitcher(){
 
-				/* BASEMAP TOGGLE */
+		/* BASEMAP TOGGLE */
 		var activeBasemap = 'streets';
 		$("#switcher-button").text("view satellite basemap");
 
