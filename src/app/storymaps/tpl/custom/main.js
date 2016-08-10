@@ -273,8 +273,8 @@ define([
 		$("#switcher-button").text("view satellite basemap");
 
 		$("#switcher-button").click(function () {
-			var satelliteBasemap = app.map.getLayer(app.map.layerIds[3]);
-			var satelliteReference = app.map.getLayer(app.map.layerIds[4]);
+			var satelliteBasemap = app.map.getLayer(app.map.layerIds[2]);
+			var satelliteReference = app.map.getLayer(app.map.layerIds[3]);
 			if (activeBasemap == 'streets'){
 				satelliteBasemap.setVisibility(true);
 				satelliteReference.setVisibility(true);
