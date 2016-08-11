@@ -194,7 +194,7 @@ define([
 		function moveSelectedToFront(){
 			if (selectedGraphic && selectedGraphic.getDojoShape()) {
 				selectedGraphic.getDojoShape().moveToFront();
-				console.log("Moved item to front,")
+				console.log("Moved item to front");
 			}
 		}
 
@@ -231,9 +231,9 @@ define([
 
     topic.subscribe("story-loaded-map", function(result){
 
-    	/* Add thousands separator to attributes */
-    	function numberWithCommas(x) {
-    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		/* Add thousands separator to attributes */
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 
         if ( result.id == WEBMAP_ID && ! clickHandlerIsSetup ) {
@@ -244,10 +244,11 @@ define([
                 layer.on("mouse-over", function(e){
                     map.setMapCursor("pointer");
                     map.infoWindow.setContent(
-                    	"<div style='font-weight:bold;font-size:14px'>"+e.graphic.attributes["Rank"]+". "+e.graphic.attributes["name"]+" ("+e.graphic.attributes["Country"]+")"+"</div><hr/>"+
-						"<div><span style='font-weight:bold;font-size:12px'>People of concern | </span>"+numberWithCommas(e.graphic.attributes["PoCTotal"])+"</div>"+
-						"<div><span style='font-weight:bold;font-size:12px'>Year of establishment | </span>"+e.graphic.attributes["EstabDate"]+"</div>"                   							 
-                    	);
+						"<div style='font-weight:bold;font-size:12px'>"+e.graphic.attributes.Rank+". "+e.graphic.attributes.name+" ("+e.graphic.attributes.Country+")"+"</div><hr/>"+
+						"<div><span style='font-weight:bold;font-size:12px'>People of concern | </span>"+numberWithCommas(e.graphic.attributes.PoCTotal)+"</div>"+
+						"<div><span style='font-weight:bold;font-size:12px'>Year of establishment | </span>"+e.graphic.attributes.EstabDate+"</div>"+
+						"<div><span style='font-weight:bold;font-size:12px'>Settlement type | </span>"+e.graphic.attributes.category+"</div><br/>"
+					);
                     map.infoWindow.show(e.graphic.geometry);
                 });
 
@@ -257,7 +258,7 @@ define([
                 });
 
                 layer.on("click", function(e){
-                    var index = e.graphic.attributes["story_index_10"];
+                    var index = e.graphic.attributes.story_index_10;
                     topic.publish("story-navigate-section", index);
                 });
             }
@@ -292,6 +293,6 @@ define([
 				satelliteReference.setVisibility(false);			
 			}
 		});
-	};
+	}
 });
 
