@@ -1,6 +1,6 @@
 h1, h2, h3 {
 	color: #fff !important;
-	font-style: bold !important
+	font-style: bold !important;
 }	
 
 p {
@@ -8,6 +8,11 @@ p {
 	color: #fff;
 }
 
+.sidePanel .section {
+	opacity: 1 !important;
+	background-color: rgba(0,94,184,0.3) !important;
+	margin-top: 8px;
+}
 
 .sectionPanel .title, .sectionPanel .appTitle, #mobileView .title{
 	font-family: 'Muli', sans-serif !important
@@ -26,16 +31,8 @@ p {
 	font-family: 'Muli', sans-serif !important;
 }
 
-.section {
-	opacity: 1 !important;
-	background-color: rgba(0,94,184,0.3) !important;
-	margin-top: 8px;
-}
-
 .section p, .section strong {
-	color: rgba(255,255,255,0) !important;
-	text-shadow: 0px 0px 8px rgba(255,255,255,0.4) !important;
-;
+	color: rgba(255,255,255,1) !important;
 }
 
 .section.active p, .section.active strong {
@@ -69,12 +66,15 @@ p {
 	height: 110% !important;
 }
 
-.header .linkContainer a, .shareIcon, .shareIcon:disabled {
+.header .linkContainer a, 
+.header .shareIcon, 
+.header .shareIcon:disabled {
 	color: #646464 !important;
 	opacity: 1 !important;
 }
 
- .header .linkContainer a:hover, .shareIcon:hover {
+ .header .linkContainer a:hover,
+ .headerfv .shareIcon:hover {
 	color: #005EB8 !important;
 }
 
@@ -345,9 +345,18 @@ div .scroll {
 
 
 /* MOBILE STYLES */
+
+/*.floatingSwiper .backdrop {
+	background-color: transparent !important;
+}*/
+
+.swiper-slide-active,
+.swiper-slide-visible {
+	background-color: rgba(0,94,184,0.8) !important;
+}
+
 .floatingSwiper .title {
-	font-size: 1.85em;
-	color: #000 !important;
+	font-size: 1.2em;
 }
 
 .shareBtns {
@@ -357,10 +366,6 @@ div .scroll {
 	-moz-transition: all .5s ease;
 	-o-transition: all .5s ease;
 	transition: all .5s ease;
-}
-
-.swiper-slide .swiper-slide-visible .swiper-slide-active {
-	background-color: rgba(255,255,255,0.8) !important;
 }
 
 .legendContainer {
