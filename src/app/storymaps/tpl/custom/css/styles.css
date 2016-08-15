@@ -314,7 +314,7 @@ p {
 
 
 /* Map switcher button (lower right) */
-@media all and (min-width: 768px) {
+/*@media all and (min-width: 768px) {
 	#map-switcher-container {
 		height: 40px;
 		bottom: 40px;
@@ -331,7 +331,7 @@ p {
 		font-weight: lighter !important;
 		font-size: 1em !important;
 	}
-}
+}*/
 
 
 /* Disable scroll */
@@ -371,4 +371,34 @@ div .scroll {
 .legendContainer {
 	background-color: rgba(255,255,255,0.6) !important;
 	border-radius: 0px !important;
+}
+
+.zoom-button {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    left: 25%;
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 5px 15px;
+    text-align: center;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.zoom-button a {
+	border-bottom: none !important;
+    text-transform: uppercase !important;
+    font-size: 120%;
+    color: #fff !important;
+}
+
+.zoom-button:hover {
+    background-color: rgba(255,255,255,1);
+}
+
+.zoom-button:hover a {
+    color: #005EB8 !important;
 }

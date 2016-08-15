@@ -52,7 +52,7 @@ define([
 		});
 
 		/* BASEMAP TOGGLE */
-		basemapSwitcher();
+		// basemapSwitcher();
 
 		/*  OVERVIEW MAP IN SIDEBAR  */
 
@@ -146,7 +146,7 @@ define([
 		setIconDisplay(app.data.getCurrentSectionIndex());
 
 		// Add map events
-		indexMapLayer.on('click',function(event){
+		indexMapLayer.on('click' || 'touchend',function(event){
 			$('#index-map-helper').removeClass('active');
 			hideIndexMapInfo();
 			topic.publish('story-navigate-section', event.graphic.attributes[StoryIndexField]);
@@ -267,32 +267,32 @@ define([
         }
     });
 
-	function basemapSwitcher(){
+	// function basemapSwitcher(){
 
-		/* BASEMAP TOGGLE */
-		var activeBasemap = 'streets';
-		$("#switcher-button").text("view satellite basemap");
+	// 	/* BASEMAP TOGGLE */
+	// 	var activeBasemap = 'streets';
+	// 	$("#switcher-button").text("view satellite basemap");
 
-		$("#switcher-button").click(function () {
-			var satelliteBasemap = app.map.getLayer(app.map.layerIds[2]);
-			var satelliteReference = app.map.getLayer(app.map.layerIds[3]);
-			if (activeBasemap == 'streets'){
-				satelliteBasemap.setVisibility(true);
-				satelliteReference.setVisibility(true);
-				activeBasemap = 'satellite';
-				$("#switcher-button").text('view streets basemap');
-			} else {
-				//// Your aerial Layer
-				/*var newbase = new VETiledLayer({
-					bingMapsKey: "-Your Bing Key-",
-					mapStyle: VETiledLayer.MAP_STYLE_AERIAL_WITH_LABELS
-				}); //BING AERIAL */
-				activeBasemap = 'streets';
-				$("#switcher-button").text('view satellite basemap');
-				satelliteBasemap.setVisibility(false);
-				satelliteReference.setVisibility(false);			
-			}
-		});
-	}
+	// 	$("#switcher-button").click(function () {
+	// 		var satelliteBasemap = app.map.getLayer(app.map.layerIds[2]);
+	// 		var satelliteReference = app.map.getLayer(app.map.layerIds[3]);
+	// 		if (activeBasemap == 'streets'){
+	// 			satelliteBasemap.setVisibility(true);
+	// 			satelliteReference.setVisibility(true);
+	// 			activeBasemap = 'satellite';
+	// 			$("#switcher-button").text('view streets basemap');
+	// 		} else {
+	// 			//// Your aerial Layer
+	// 			/*var newbase = new VETiledLayer({
+	// 				bingMapsKey: "-Your Bing Key-",
+	// 				mapStyle: VETiledLayer.MAP_STYLE_AERIAL_WITH_LABELS
+	// 			}); //BING AERIAL */
+	// 			activeBasemap = 'streets';
+	// 			$("#switcher-button").text('view satellite basemap');
+	// 			satelliteBasemap.setVisibility(false);
+	// 			satelliteReference.setVisibility(false);			
+	// 		}
+	// 	});
+	// }
 });
 
