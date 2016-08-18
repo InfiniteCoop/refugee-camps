@@ -223,17 +223,19 @@ define([
 	});
 
 	/* Click handler for map symbols */
-
     var WEBMAP_ID = "0df1997ac587470f9e3713a15c532cb9",
         LAYER_ID = "UNHCR_PoC_2016_8102";
 
     var clickHandlerIsSetup = false;
 
+
+    /* Scroll to selected section */
     var navigateToSection = function(e){
         var index = e.graphic.attributes.Rank;
         topic.publish("story-navigate-section", index);
         console.log("weeeee click to scroll");
 
+        /* If mobile, re-center map on selected point */
         if($('body').hasClass('mobile-view')) {
 			var map = app.maps[WEBMAP_ID].response.map;
 			var thisPoint = e.graphic.geometry;
@@ -244,7 +246,7 @@ define([
 
     topic.subscribe("story-loaded-map", function(result){
 
-		/* Add thousands separator to attributes */
+		/* Add thousands separator to population attribute */
 		function numberWithCommas(x) {
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
@@ -265,11 +267,13 @@ define([
 					);
                     map.infoWindow.show(e.graphic.geometry);
                     map.infoWindow.resize(300,200);
+                    console.log("Tooltip shown");
                 });
 
                 layer.on("mouse-out", function(e){
                     map.setMapCursor("default");
                     map.infoWindow.hide();
+                    console.log("Tooltip hidden");
                 });
 
                 layer.on("click", navigateToSection);
