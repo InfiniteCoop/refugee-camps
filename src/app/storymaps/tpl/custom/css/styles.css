@@ -86,7 +86,7 @@ p {
 	display: table-cell !important;
 	position: fixed !important;
 	width: 45% !important;
-	max-width: 1200px !important;
+	max-width: 1000px !important;
 	left: 2%;
 	background-color: transparent !important;
 	z-index: 2 !important;
