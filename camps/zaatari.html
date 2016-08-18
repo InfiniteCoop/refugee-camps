@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+
+	<title>Slippry Slider for Map Journal</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/slippry.min.js"></script>
+<link rel="stylesheet" href="css/slippry.css" />
+
+</head>
+
+<style>
+
+html,body{
+		padding: 0;
+		margin: 0;
+}
+
+#slider-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+}
+
+#slippry-slider {
+	height: 100%;
+	position: fixed;
+}
+
+.sy-pager {
+	z-index: 999;
+	position: relative;
+	bottom: 20%;
+	margin: -20px auto;
+}
+
+.sy-pager li {
+	width: .7em;
+	height: .7em;
+}
+
+/*.sy-controls li a:after{
+	width: 1.8em;
+	height: 1.8em;
+}*/
+
+.sy-pager li a:hover,
+.sy-pager li a:visited,
+.sy-pager li.sy-active a {
+	background-color: rgba(0,94,184,1);
+}
+
+</style>
+
+<body>
+
+	<div id="slider-container">
+	<ul id="slippry-slider">
+	  <li>
+	    <a href="#slide1"><img src="images/Zaatari/RF262424_201405131336-UNHCR-Jordan-IMG_2446.jpg" alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide2"><img src="images/Zaatari/RF248913_201604111521-Jordan-JMC_1159.jpg"  alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide3"><img src="images/Zaatari/RF178704_055972.jpg" alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide4"><img src="images/Zaatari/RF266405_201608021619-Jordan-JMC_5795.jpg" alt=""></a>
+	  </li>
+		<li>
+	    <a href="#slide5"><img src="images/Zaatari/RF238185_20160118-JOR-Herwig-3.jpg" alt=""></a>
+	  </li>
+		<li>
+	    <a href="#slide6"><img src="images/Zaatari/RF248883_201604111219-Jordan-IMG_8960.jpg" alt=""></a>
+	  </li>
+	</ul>
+	</div>
+
+
+	<script>
+$(document).ready(function(){
+  jQuery('#slippry-slider').slippry({
+	  slippryWrapper: '<div class="sy-box slippry-slider" />', // wrapper to wrap everything, including pager
+
+	  // options
+	  adaptiveHeight: true, // height of the sliders adapts to current slide
+	  start: '1', // num (starting from 1), random
+	  loop: true, // first -> last & last -> first arrows
+
+	  // transitions
+	  transition: 'fade', // fade, horizontal, kenburns, false
+	  easing: 'fade-out', // easing to use in the animation [(see... [jquery www])]
+	  continuous: false,
+
+	  // slideshow
+		auto: true,
+		pause: 2500,
+		autoDelay: 100,
+  })
+});
+	</script>
+
+</body>
+</html>

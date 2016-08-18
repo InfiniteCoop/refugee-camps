@@ -32,16 +32,15 @@ function drawChart() {
 			left: '10%'
 		},
 
-		hAxis: {
+ 		hAxis: {
 			baselineColor: '#ffffff',
 			textStyle: {
-				fontSize: 11,
+				fontSize: 9,
 				color: '#ffffff',
 			},
 			maxAlternation: 1,
 			minTextSpacing: 80,
 		},
-
 		vAxis: {
 			format: 'short',
 			baselineColor: '#ffffff',
@@ -70,13 +69,7 @@ function drawChart() {
 		legend: {
 			position: 'none'
 		},
-
-		animation: {
-			duration: 1200,
-			easing: 'out',
-			startup: true
-		},
-
+ 
 		lineWidth: 2.5,
 		pointSize: 4,
 		interpolateNulls: true		

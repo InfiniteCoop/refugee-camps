@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+
+	<title>Slippry Slider for Map Journal</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/slippry.min.js"></script>
+<link rel="stylesheet" href="css/slippry.css" />
+
+</head>
+
+<style>
+
+html,body{
+		padding: 0;
+		margin: 0;
+}
+
+#slider-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+}
+
+#slippry-slider {
+	height: 100%;
+	position: fixed;
+}
+
+.sy-pager {
+	z-index: 999;
+	position: relative;
+	bottom: 20%;
+	margin: -20px auto;
+}
+
+.sy-pager li {
+	width: .7em;
+	height: .7em;
+}
+
+/*.sy-controls li a:after{
+	width: 1.8em;
+	height: 1.8em;
+}*/
+
+.sy-pager li a:hover,
+.sy-pager li a:visited,
+.sy-pager li.sy-active a {
+	background-color: rgba(0,94,184,1);
+}
+
+
+</style>
+
+<body>
+
+	<div id="slider-container">
+	<ul id="slippry-slider">
+	  <li>
+	    <a href="#slide1"><img src="images/Kakuma/RF258221__H3J4690.jpg" alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide2"><img src="images/Kakuma/RF260226_201606191823_0N1A8808_ws.jpg"  alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide3"><img src="images/Kakuma/RF260234_201606191753_0N1A1643_ws.jpg" alt=""></a>
+	  </li>
+	  <li>
+	    <a href="#slide4"><img src="images/Kakuma/RF260229_201606200836_0N1A8974_ws.jpg" alt=""></a>
+	  </li>
+		<li>
+	    <a href="#slide4"><img src="images/Kakuma/RF260197_201606181201_0N1A0876_ws.jpg" alt=""></a>
+	  </li>
+	</ul>
+	</div>
+
+	<script>
+$(document).ready(function(){
+  jQuery('#slippry-slider').slippry({
+	  slippryWrapper: '<div class="sy-box slippry-slider" />', // wrapper to wrap everything, including pager
+
+	  // options
+	  adaptiveHeight: true, // height of the sliders adapts to current slide
+	  start: '1', // num (starting from 1), random
+	  loop: true, // first -> last & last -> first arrows
+
+	  // transitions
+	  transition: 'fade', // fade, horizontal, kenburns, false
+	  easing: 'fade-out', // easing to use in the animation [(see... [jquery www])]
+	  continuous: false,
+
+	  // slideshow
+		auto: true,
+		pause: 2500,
+		autoDelay: 100,
+  })
+});
+	</script>
+
+</body>
+</html>
