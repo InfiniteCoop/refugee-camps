@@ -46,7 +46,11 @@ p {
 }
 
 .section a {
-	color: #000080 !important;
+	color: #fff !important;
+}
+
+.section a:hover {
+	color: #e6e6e6 !important;
 }
 
 .sidePanel .section.active {
@@ -69,7 +73,7 @@ p {
 .header .linkContainer a, 
 .header .shareIcon, 
 .header .shareIcon:disabled {
-	color: #646464 !important;
+	color: #005eb8 !important;
 	opacity: 1 !important;
 }
 
@@ -250,11 +254,13 @@ div .scroll {
 }
 
 
+
+
 .zoom-button {
     display: inline-block;
     position: relative;
-    width: 90%;
-    left: 5%;
+    width: 60%;
+    left: 20%;
     background-color: transparent;
     border: 2px solid white;
     padding: 5px 15px;
@@ -270,6 +276,7 @@ div .scroll {
     text-transform: uppercase !important;
     font-size: 120%;
     color: #fff !important;
+    text-decoration: none !important;
 }
 
 .zoom-button:hover {
@@ -278,6 +285,14 @@ div .scroll {
 
 .zoom-button:hover a {
     color: #005EB8 !important;
+}
+
+@media all and (max-width: 769px) {
+	
+	.zoom-button {
+		width: 100%;
+		left: 0%;
+	}
 }
 
 
@@ -306,10 +321,3 @@ div .scroll {
 	background-color: rgba(255,255,255,0.6) !important;
 	border-radius: 0px !important;
 }
-
-			@media all and (max-width: 769px) {
-				
-				.no-mobile {
-					display: none;
-				}
-			}
