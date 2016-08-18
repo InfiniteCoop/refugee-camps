@@ -99,10 +99,6 @@ p {
 	margin-right: 0 !important;
 }
 
-.sidePanel .content {
-	margin: 20px 10px 10px 10px !important;
-}
-
 #sidePanelInner {
 	border-right: 0px !important;
 	padding-left: 50px !important;
@@ -312,28 +308,6 @@ p {
 	z-index: 300;
 }
 
-
-/* Map switcher button (lower right) */
-/*@media all and (min-width: 768px) {
-	#map-switcher-container {
-		height: 40px;
-		bottom: 40px;
-		width: auto;
-		position: fixed;
-		right: 40px;
-		z-index: 3;
-		font-weight: lighter;
-		font-size: 1em;
-	}
-
-	#switcher-button {
-		padding: 0px 10px !important;
-		font-weight: lighter !important;
-		font-size: 1em !important;
-	}
-}*/
-
-
 /* Disable scroll */
 div .scroll {
 	display: none !important;
@@ -344,40 +318,11 @@ div .scroll {
 }
 
 
-/* MOBILE STYLES */
-
-/*.floatingSwiper .backdrop {
-	background-color: transparent !important;
-}*/
-
-.swiper-slide-active,
-.swiper-slide-visible {
-	background-color: rgba(0,94,184,0.8) !important;
-}
-
-.floatingSwiper .title {
-	font-size: 1.2em;
-}
-
-.shareBtns {
-	color: #000 !important;
-	opacity: 1 important;
-	-webkit-transition: all .5s ease;
-	-moz-transition: all .5s ease;
-	-o-transition: all .5s ease;
-	transition: all .5s ease;
-}
-
-.legendContainer {
-	background-color: rgba(255,255,255,0.6) !important;
-	border-radius: 0px !important;
-}
-
 .zoom-button {
     display: inline-block;
     position: relative;
-    width: 50%;
-    left: 25%;
+    width: 90%;
+    left: 5%;
     background-color: transparent;
     border: 2px solid white;
     padding: 5px 15px;
@@ -402,3 +347,37 @@ div .scroll {
 .zoom-button:hover a {
     color: #005EB8 !important;
 }
+
+
+/* MOBILE STYLES */
+
+.swiper-slide-active,
+.swiper-wrapper,
+.swiper-slide-visible {
+	background-color: rgba(0,94,184,0.8) !important;
+}
+
+.floatingSwiper .title {
+	font-size: 1.2em;
+}
+
+.shareBtns {
+	color: #000 !important;
+	opacity: 1 important;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.legendContainer {
+	background-color: rgba(255,255,255,0.6) !important;
+	border-radius: 0px !important;
+}
+
+			@media all and (max-width: 769px) {
+				
+				.no-mobile {
+					display: none;
+				}
+			}
