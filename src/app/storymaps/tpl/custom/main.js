@@ -146,7 +146,7 @@ define([
 		setIconDisplay(app.data.getCurrentSectionIndex());
 
 		// Add map events
-		indexMapLayer.on('click' || 'touchend',function(event){
+		indexMapLayer.on('click',function(event){
 			$('#index-map-helper').removeClass('active');
 			hideIndexMapInfo();
 			topic.publish('story-navigate-section', event.graphic.attributes[StoryIndexField]);
@@ -229,6 +229,19 @@ define([
 
     var clickHandlerIsSetup = false;
 
+    var navigateToSection = function(e){
+        var index = e.graphic.attributes.Rank;
+        topic.publish("story-navigate-section", index);
+        console.log("weeeee click to scroll");
+
+        if($('body').hasClass('mobile-view')) {
+			var map = app.maps[WEBMAP_ID].response.map;
+			var thisPoint = e.graphic.geometry;
+			map.centerAt(thisPoint);
+			console.log("map centered for mobile");
+		}
+    };
+
     topic.subscribe("story-loaded-map", function(result){
 
 		/* Add thousands separator to attributes */
@@ -245,11 +258,13 @@ define([
                     map.setMapCursor("pointer");
                     map.infoWindow.setContent(
 						"<div style='font-weight:bold;font-size:12px'>"+e.graphic.attributes.Rank+". "+e.graphic.attributes.name+" ("+e.graphic.attributes.Country+")"+"</div><hr/>"+
-						"<div><span style='font-weight:bold;font-size:12px'>People of concern | </span>"+numberWithCommas(e.graphic.attributes.PoCTotal)+"</div>"+
-						"<div><span style='font-weight:bold;font-size:12px'>Year of establishment | </span>"+e.graphic.attributes.EstabDate+"</div>"+
-						"<div><span style='font-weight:bold;font-size:12px'>Settlement type | </span>"+e.graphic.attributes.category+"</div><br/>"
+						"<div><span style='font-weight:bold;font-size:12px'>Population (2015): </span>"+numberWithCommas(e.graphic.attributes.PoCTotal)+"</div>"+
+						"<div><span style='font-weight:bold;font-size:12px'>Established or recognized in: </span>"+e.graphic.attributes.EstabDate+"</div>"+
+						"<div><span style='font-weight:bold;font-size:12px'>Occupants primarily from: </span>"+e.graphic.attributes.OriginCountries+"</div>"+						
+						"<div><span style='font-weight:bold;font-size:12px'>Settlement type: </span>"+e.graphic.attributes.category+"</div><br/>"
 					);
                     map.infoWindow.show(e.graphic.geometry);
+                    map.infoWindow.resize(300,200);
                 });
 
                 layer.on("mouse-out", function(e){
@@ -257,42 +272,13 @@ define([
                     map.infoWindow.hide();
                 });
 
-                layer.on("click", function(e){
-                    var index = e.graphic.attributes.story_index_10;
-                    topic.publish("story-navigate-section", index);
-                });
+                layer.on("click", navigateToSection);
+            
+                layer.on("touch", navigateToSection);                
             }
 
             clickHandlerIsSetup = true;
         }
     });
-
-	// function basemapSwitcher(){
-
-	// 	/* BASEMAP TOGGLE */
-	// 	var activeBasemap = 'streets';
-	// 	$("#switcher-button").text("view satellite basemap");
-
-	// 	$("#switcher-button").click(function () {
-	// 		var satelliteBasemap = app.map.getLayer(app.map.layerIds[2]);
-	// 		var satelliteReference = app.map.getLayer(app.map.layerIds[3]);
-	// 		if (activeBasemap == 'streets'){
-	// 			satelliteBasemap.setVisibility(true);
-	// 			satelliteReference.setVisibility(true);
-	// 			activeBasemap = 'satellite';
-	// 			$("#switcher-button").text('view streets basemap');
-	// 		} else {
-	// 			//// Your aerial Layer
-	// 			/*var newbase = new VETiledLayer({
-	// 				bingMapsKey: "-Your Bing Key-",
-	// 				mapStyle: VETiledLayer.MAP_STYLE_AERIAL_WITH_LABELS
-	// 			}); //BING AERIAL */
-	// 			activeBasemap = 'streets';
-	// 			$("#switcher-button").text('view satellite basemap');
-	// 			satelliteBasemap.setVisibility(false);
-	// 			satelliteReference.setVisibility(false);			
-	// 		}
-	// 	});
-	// }
 });
 
