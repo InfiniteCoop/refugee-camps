@@ -152,6 +152,10 @@ p {
 	margin-top: 5px;
 }
 
+.mediaBackContainer {
+	left: 60% !important;
+}
+
 /* Index map pannel and button */
 .sliding-panel {
 	position: relative;
@@ -253,9 +257,6 @@ div .scroll {
 	display: none !important;
 }
 
-
-
-
 .zoom-button {
     display: inline-block;
     position: relative;
@@ -315,9 +316,4 @@ div .scroll {
 	-moz-transition: all .5s ease;
 	-o-transition: all .5s ease;
 	transition: all .5s ease;
-}
-
-.legendContainer {
-	background-color: rgba(255,255,255,0.6) !important;
-	border-radius: 0px !important;
 }
