@@ -51,10 +51,7 @@ define([
 			console.log("Sliding panel clicked");
 		});
 
-		/* BASEMAP TOGGLE */
-		// basemapSwitcher();
-
-		/*  OVERVIEW MAP IN SIDEBAR  */
+		/*  INDEX MAP IN SIDEBAR  */
 
 		//Map CSV fields to JS variables;
 		var LabelField = 'Label';
