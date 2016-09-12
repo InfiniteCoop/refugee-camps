@@ -294,6 +294,7 @@ define(["lib-build/css!./MainView",
 						slider: true,
 						autoResize: false,
 						showAttribution: true,
+						smartNavigation: false,
 						infoWindow: popup,
 						extent: extent
 					},
