@@ -119,7 +119,7 @@ define([
 		});
 
 		//Create country layer from Feature Service
-		var countriesLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/CountriesGeneralized/FeatureServer/0");
+		var countriesLayer = new FeatureLayer("https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/CountriesGeneralized/FeatureServer/0");
 
 		// Load CSV File as point later
 		var indexMapLayer = new CSVLayer(csvPath);
